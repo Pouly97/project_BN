@@ -1,0 +1,297 @@
+:root {
+    --color-gainsboro: #dcdcdc;
+    --color-darkorange: #ff8c00;
+    --color-dimgray-100: #696969;
+    --color-black: #000000;
+    --color-silver: #c0c0c0;
+    --color-white: #ffffff;
+    --padding-3xs: 4px;
+    --padding-xs: 8px;
+    --padding-s: 16px;
+    --padding-m: 24px;
+    --padding-l: 32px;
+    --padding-xl: 40px;
+    --br-3xs: 4px;
+    --br-xl: 10px;
+    --gap-xs: 8px;
+    --gap-s: 16px;
+    --gap-m: 24px;
+    --gap-l: 32px;
+    --gap-xl: 40px;
+    --font-size-mini: 12px;
+    --font-size-s: 16px;
+    --font-size-m: 18px;
+    --font-size-l: 24px;
+    --font-size-xl: 32px;
+    --font-one-mobile-otf: 'ONE Mobile OTF', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: "카페24 써라운드" , bold;
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative; /* 컨테이너 내 위치 설정을 위해 상대 위치 지정 */
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    /* background-color: ffffff; */
+    background-image: url('/H_Project/project1/public/icon/상단가랜더.png'); /* 배경 이미지 경로 */
+    background-size: cover; /* 배경 이미지가 헤더를 덮도록 설정 */
+    background-position: center; /* 이미지의 위치를 중앙으로 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--padding-s);
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* 헤더가 다른 요소들 위에 있도록 설정 */
+}
+
+.logo {
+    padding: 5px;
+    height: 55px;
+    object-fit: cover;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+    gap: var(--gap-xs);
+    padding-top : 180px;
+    padding-left: 50px;
+    z-index: 1001; /* 다른 요소보다 위에 표시되도록 */
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 그림자 추가 */
+    border-radius: 100px; /* 아래 모서리 둥글게 */
+}
+
+.nav-item {
+    display: block;
+    padding: 20px;
+    display: flex;
+    width: 100px;
+    height: 45px;
+    color: #FFC567;
+    font-family: "카페24 써라운드";
+    font-size: 28px;
+    -webkit-text-stroke: 2px green;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: transparent; /* 배경색 제거 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 100px; /* 아래 모서리 둥글게 */
+}
+
+.nav-image {
+    width: 250px; /* 이미지 너비 */
+    height: auto; /* 높이 자동 조정 */
+    margin-top: 10px; /* 텍스트와 이미지 사이 간격 */
+    padding-left: 20px; /* 왼쪽 여백 */
+}
+
+.nav-item:hover {
+    background-color: #058cd7;
+    color: var(--color-white);
+}
+.user-info {
+    position: fixed; /* 화면에 고정 위치시키기 */
+    top: 120px; /* 헤더 아래에 위치시키기 */
+    right: var(--padding-s); /* 화면 오른쪽에 고정 */
+    width: 250px;
+    height:70px;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+    background-color: #058cd7; /* 반투명 배경색 */
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 30px;
+    color: var(--color-white);
+    z-index: 1000; /* 헤더 위에 표시되도록 설정 */
+}
+.user-details span {
+    margin-bottom: 4px; /* 닉네임과 이메일 사이의 간격 */
+}
+.user-details {
+    font-size: var(--font-size-s); /* 글자 크기 조정 */
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    color : black;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+    padding-bottom: 30px;
+} 
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-m);
+    position: relative;
+    padding-top: 200px;
+    color:#696969;
+    /* justify-content: center; */
+    background-color: #fffdf4; /* 배경색 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    width: 50%; /* 전체 너비 확장 */
+    box-sizing: border-box; /* 패딩 포함한 너비 계산 */
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 500px;
+    padding: var(--padding-l);
+    border: 1px solid var(--color-gainsboro);
+    border-radius: var(--br-xl);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-l);
+    z-index: 1; /* 다른 요소들 위에 오도록 설정 */
+
+}
+
+.profile-section {
+    
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-m);
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    flex: 1;
+}
+
+.profile-name {
+    font-size: var(--font-size-l);
+    color:#696969;
+}
+
+.profile-email {
+    font-size: var(--font-size-s);
+    color: var(--color-dimgray-100);
+}
+
+.profile-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-s);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+}
+
+label {
+    font-size: var(--font-size-s);
+    color: var(--color-dimgray-100);
+}
+
+input {
+    padding: var(--padding-xs);
+    border: 1px solid var(--color-gainsboro);
+    border-radius: var(--br-3xs);
+    font-size: var(--font-size-s);
+}
+
+.actions-section {
+    display: flex;
+    justify-content: center;
+    gap: var(--gap-m);
+    width: 100%;
+}
+
+.action-button {
+    padding: var(--padding-xs) var(--padding-l);
+    border: none;
+    border-radius: var(--br-xl);
+    font-size: var(--font-size-s);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+}
+
+.action-button-outline {
+    background-color: var(--color-white);
+    color: #00995e;
+    border: 1.5px solid #00995e;
+}
+
+.action-button-black {
+    background-color: #00995e;;
+    color: var(--color-white);
+}
+
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    font-family: "카페24 써라운드";
+}
+
+.footer {
+    display: block;
+    text-align: center;
+    background-color: #00995e;
+    color: white;
+    /* margin-top: 20px; */
+    width: 100%;
+}

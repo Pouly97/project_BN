@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>회원정보</title>
+    <link rel="stylesheet" href="/updateRegister.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ONE+Mobile+OTF:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img class="logo" alt="로고" src="/icon/BNlogo.png">
+
+            <!-- 네비게이션 바 -->
+            <nav class="nav" aria-label="Main Navigation">
+                <a href="/" class="nav-item" onclick="handleHomeButtonClick()">HOME</a>
+                <a href="mypage" class="nav-item" onclick="handleMyButtonClick()">MY</a>
+                <a href="login" class="nav-item" onclick="handleLoginButtonClick()">LOGIN</a>
+                <img src="/icon/화면분할가랜더.png" alt="Login Image" class="nav-image">
+            </nav>
+            <!-- 유저 정보 영역 -->
+            <div class="user-info" id="userInfo">
+                <img class="profileuser" src="/icon/유저사진핑크.png" alt="프로필 사진" id="profileuser">
+                <div class="user-details">
+                    <span id="userId">비회원 님</span>
+                    <br>
+                    <span id="userEmail">이메일@email.com</span>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <h1>회원정보 수정</h1>
+            <div class="profile-card">
+                <div class="profile-section">
+                    <img class="profile-pic" src="/icon/회원사진.png" alt="Profile">
+                    <div class="profile-info">
+                        <b class="profile-name">소크라테스</b>
+                        <b class="profile-email">sokra1234@gmail.com</b>
+                    </div>
+                </div>
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="nickname">닉네임 수정</label>
+                        <input type="text" id="nickname" name="nickname" placeholder="새 닉네임">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">비밀번호 수정</label>
+                        <input type="password" id="password" name="password" placeholder="새 비밀번호">
+                    </div>
+                </form>
+                <div class="actions-section">
+                    <button class="action-button action-button-outline" onclick="updateInfo()">정보 수정</button>
+                    <button class="action-button action-button-black" onclick="confirmDelete()">회원탈퇴</button>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+    <script>
+        function updateInfo() {
+            alert("정보가 수정되었습니다.");
+        }
+
+        function confirmDelete() {
+            if (confirm("정말 회원탈퇴 하시겠습니까?")) {
+                alert("회원탈퇴가 완료되었습니다.");
+            } else {
+                alert("회원탈퇴가 취소되었습니다.");
+            }
+        }
+    </script>
+    <footer class="footer">
+        <p>@ 2024 Black Nuguri</p>
+    </footer>
+</body>
+</html>

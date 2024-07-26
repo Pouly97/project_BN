@@ -1,0 +1,352 @@
+:root {
+    --color-gainsboro: #dcdcdc;
+    --color-darkorange: #ff8c00;
+    --color-dimgray-100: #696969;
+    --color-black: #000000;
+    --color-silver: #c0c0c0;
+    --color-white: #ffffff;
+    --padding-3xs: 4px;
+    --padding-xs: 8px;
+    --padding-s: 16px;
+    --padding-m: 24px;
+    --padding-l: 32px;
+    --padding-xl: 40px;
+    --br-3xs: 4px;
+    --br-xl: 10px;
+    --gap-xs: 8px;
+    --gap-s: 16px;
+    --gap-m: 24px;
+    --gap-l: 32px;
+    --gap-xl: 40px;
+    --font-size-mini: 12px;
+    --font-size-s: 16px;
+    --font-size-m: 18px;
+    --font-size-l: 24px;
+    --font-size-xl: 32px;
+    --font-one-mobile-otf: 'ONE Mobile OTF', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header {
+    width: 100%;
+    height: 45px;
+    background-color: var(--color-darkorange);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--padding-s);
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* 헤더가 다른 요소보다 위에 오도록 설정 */
+    z-index: 1000;
+}
+
+.logo {
+    height: 35px;
+    object-fit: cover;
+}
+
+.nav {
+    display: flex;
+    gap: var(--gap-xs);
+}
+
+.nav-item {
+    width: 100px;
+    height: 45px;
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-darkorange);
+    border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: #ff7f00;
+    color: var(--color-white);
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-m);
+    position: relative;
+    /* 올바른 레이어링을 위해 상대 위치 지정 */
+
+}
+
+/* 지도와 필터 컨테이너 스타일 */
+.mapApi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 50px);
+    margin: 0 auto;
+}
+
+#map {
+    width: 70%;
+    height: 100%;
+}
+
+/* 필터 박스 스타일 */
+#whiteBox {
+    position: fixed;
+    bottom: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 200px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 30px;
+    box-sizing: border-box;
+    transition: bottom 0.5s ease, height 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 화살표 아이콘 스타일 */
+.topArrow {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ff6600;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    z-index: 1001;
+    padding: 5px;
+    transition: transform 0.5s ease;
+}
+
+/* 오버레이 보이기 */
+.showOverlay #whiteBox {
+    bottom: 0;
+}
+
+/* 화살표 위를 가리키도록 회전 */
+.showOverlay .topArrow {
+    transform: translateX(-50%) rotate(360deg);
+}
+
+/* 필터 컨테이너 스타일 */
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+/* 필터 옵션 스타일 */
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    /* 수평 중앙 정렬 */
+    width: 100%;
+    max-width: 600px;
+}
+
+/* 필터 항목 스타일 */
+.filter-options input,
+.filter-options select,
+.filter-options button {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* 필터 항목 넓이 조정 (옵션) */
+.filter-options input,
+.filter-options select {
+    flex: 1;
+    max-width: 150px;
+}
+
+/* 검색 버튼 스타일 */
+.filter-options button {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.filter-options button:hover {
+    background-color: #e65c00;
+}
+
+/* 검색 결과 박스 스타일 */
+.search-results {
+    display: none;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.search-results.show {
+    display: block;
+}
+
+.search-results button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-results button:hover {
+    background-color: #e65c00;
+}
+
+/* 검색 결과 슬라이드 스타일 */
+.search-results-container {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.search-result-items {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.search-result-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    min-width: calc(33.3333% - 10px);
+    margin: 5px;
+    cursor: pointer;
+}
+
+.search-result-item img {
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.search-result-item p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #ff6600;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.arrow-left {
+    left: -40px;
+}
+
+.arrow-right {
+    right: -40px;
+}
+
+/* 상세 보기 박스 스타일 */
+/* 상세 보기 박스 스타일 */
+.detail-view {
+    display: none;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.detail-view.show {
+    display: block;
+}
+
+.detail-view button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.detail-view button:hover {
+    background-color: #e65c00;
+}
+
+/* 상세 보기 콘텐츠 스타일 */
+.detail-view-content {
+    display: flex;
+    height: 80%;
+}
+
+.detail-view-left {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.detail-view-right {
+    flex: 2;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.detail-view-left img {
+    width: 60%;
+    height: auto;
+    border-radius: 10px;
+}

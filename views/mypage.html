@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/mypage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ONE+Mobile+OTF:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img class="logo" alt="로고" src="/icon/BNlogo.png">
+
+            <!-- 네비게이션 바 -->
+            <nav class="nav" aria-label="Main Navigation">
+                <a href="/" class="nav-item" onclick="handleHomeButtonClick()">HOME</a>
+                <a href="mypage" class="nav-item" onclick="handleMyButtonClick()">MY</a>
+                <a href="login" class="nav-item" onclick="handleLoginButtonClick()">LOGIN</a>
+                <img src="/icon/화면분할가랜더.png" alt="Login Image" class="nav-image">
+            </nav>
+            <!-- 유저 정보 영역 -->
+            <div class="user-info" id="userInfo">
+                <img class="profileuser" src="/icon/유저사진핑크.png" alt="프로필 사진" id="profileuser">
+                <div class="user-details">
+                    <span id="userId">비회원 님</span>
+                    <span id="userEmail"></span>
+                </div>
+            </div>
+        
+        </header>
+        <main class="main">
+            <!-- <div class="image-container">
+                <img src="/H_Project/project1/public/icon/너굴맨4blue.png" alt="프로필 사진" class="top-image"
+            </div>
+             -->
+            <div class="profile-card">
+                <div class="profile-section">
+                    <img class="profile-pic" src="/icon/회원사진.png" alt="Profile">
+                    <div class="profile-info">
+                        <b class="profile-name">소크라테스</b>
+                        <b class="profile-email">sokra1234@gmail.com</b>
+                    </div>
+                    <div class="stats-item">
+                        <img class="favorite-icon" src="/icon/favorite.png" alt="Favorite">
+                        <div class="stats-title">찜 목록</div>
+                        <div class="stats-count">10</div>
+                    </div>
+                </div>
+                <div class="actions-section">
+                    <button class="action-button action-button-black" onclick="location.href='updateRegister';">회원정보수정</button>
+                    <button class="action-button action-button-outline" onclick="location.href='customer-service.html';">고객센터</button>
+                </div>
+            </div>
+            <!-- <img class="background-image" src="/H_Project/project1/public/icon/BN핫도그.png" alt="Background"> -->
+        </main>
+    </div>
+    <script>
+        // 로그인 여부를 확인하여 user-info 표시 내용을 결정
+        function checkLoginStatus() {
+            // 실제 로그인 구현에서는 서버에서 로그인 여부를 확인하는 API를 호출하거나,
+            // 로컬 스토리지/쿠키 등을 검사하여 로그인 상태를 확인합니다.
+            var isLoggedIn = false; // 이 값은 실제 로그인 상태에 따라 변경되어야 합니다.
+
+            if (isLoggedIn) {
+                displayUserInfo("user@example.com", "닉네임");
+            } else {
+                displayGuestInfo();
+            }
+        }
+
+         // 로그인한 유저 정보 표시
+         function displayUserInfo(userId, userNickname) {
+            document.getElementById('userId').innerText = userNickname + " 님";
+            document.getElementById('userEmail').innerText = userId;
+            document.getElementById('profilePic').src = "/icon/유저사진핑크.png"; // 프로필 사진 경로
+        }
+
+        // 비회원 정보 표시
+        function displayGuestInfo() {
+            document.getElementById('userId').innerText = "비회원 님";
+            document.getElementById('userEmail').innerText = "이메일@mail.com";
+            document.getElementById('profilePic').src = "/icon/유저사진핑크.png"; // 비회원 기본 사진 경로
+        }
+
+        // 페이지 로드 시 로그인 상태 확인
+        window.onload = checkLoginStatus;
+    </script>
+    <footer class="footer">
+        <p>@ 2024 Black Nuguri</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,278 @@
+:root {
+    --color-gainsboro: #dcdcdc;
+    --color-darkorange: #ff8c00;
+    --color-dimgray-100: #696969;
+    --color-black: #000000;
+    --color-silver: #c0c0c0;
+    --color-white: #ffffff;
+    --padding-3xs: 4px;
+    --padding-xs: 8px;
+    --padding-s: 16px;
+    --padding-m: 24px;
+    --padding-l: 32px;
+    --br-3xs: 4px;
+    --br-xs: 8px;
+    --gap-xs: 8px;
+    --font-size-mini: 12px;
+    --font-size-s: 16px;
+    --font-size-m: 18px;
+    --font-size-l: 24px;
+    --font-family: "카페24 써라운드" , bold;
+    --font-one-mobile-otf: '카페24 써라운드', bold;
+    --font-inter: 'Inter', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-inter);
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "카페24 써라운드" , bold;
+}
+
+.container {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 45px; /* 상단바 높이만큼 여백 추가 */
+    box-sizing: border-box;
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    /* background-color: ffffff; */
+    background-image: url('/H_Project/project1/public/icon/상단가랜더.png'); /* 배경 이미지 경로 */
+    background-size: cover; /* 배경 이미지가 헤더를 덮도록 설정 */
+    background-position: center; /* 이미지의 위치를 중앙으로 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--padding-s);
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* 헤더가 다른 요소들 위에 있도록 설정 */
+}
+
+.logo {
+    padding: 5px;
+    height: 55px;
+    object-fit: cover;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+    gap: var(--gap-xs);
+    padding-top : 180px;
+    padding-left: 50px;
+    z-index: 1001; /* 다른 요소보다 위에 표시되도록 */
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 그림자 추가 */
+    border-radius: 100px; /* 아래 모서리 둥글게 */
+}
+
+.nav-item {
+    display: block;
+    padding: 20px;
+    display: flex;
+    width: 100px;
+    height: 45px;
+    color: #FFC567;
+    font-family: "카페24 써라운드";
+    font-size: 28px;
+    -webkit-text-stroke: 2px green;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: transparent; /* 배경색 제거 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 100px; /* 아래 모서리 둥글게 */
+}
+
+.nav-image {
+    width: 250px; /* 이미지 너비 */
+    height: auto; /* 높이 자동 조정 */
+    margin-top: 10px; /* 텍스트와 이미지 사이 간격 */
+    padding-left: 20px; /* 왼쪽 여백 */
+}
+
+.nav-item:hover {
+    background-color: #058cd7;
+    color: var(--color-white);
+}
+
+/* user-info 영역 스타일 */
+.user-info {
+    position: fixed; /* 화면에 고정 위치시키기 */
+    top: 120px; /* 헤더 아래에 위치시키기 */
+    right: var(--padding-s); /* 화면 오른쪽에 고정 */
+    width: 250px;
+    height:70px;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+    background-color: #058cd7; /* 반투명 배경색 */
+    padding: 5px;
+    border-radius: 30px;
+    color: var(--color-white);
+    z-index: 1000; /* 헤더 위에 표시되도록 설정 */
+}
+.user-details span {
+    margin-bottom: 4px; /* 닉네임과 이메일 사이의 간격 */
+}
+.user-details {
+    font-size: var(--font-size-s); /* 글자 크기 조정 */
+}
+
+.profileUser {
+    width: 50px;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 5px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 5px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-s);
+    color: var(--color-white);
+    font-weight: bold;
+}
+
+.main {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    
+}
+
+h1 {
+    font-size: var(--font-size-l);
+    color: #595959;
+    margin-bottom: var(--gap-xs);
+    font-family: var(--font-one-mobile-otf);
+    padding-bottom: 30px;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    padding: var(--padding-m);
+    border: 1px solid var(--color-gainsboro);
+    border-radius: var(--br-3xs);
+    background-color: var(--color-white);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+}
+
+label {
+    font-size: var(--font-size-s);
+    color: var(--color-dimgray-100);
+}
+
+input {
+    height: 40px;
+    padding: 0 var(--padding-xs);
+    border: 1px solid var(--color-gainsboro);
+    border-radius: var(--br-3xs);
+    font-size: var(--font-size-s);
+    box-sizing: border-box;
+}
+
+.login-button {
+    height: 50px;
+    border: none;
+    border-radius: var(--br-3xs);
+    background-color: #058cd7;
+    color: var(--color-white);
+    font-size: var(--font-size-s);
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: var(--gap-xs);
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: var(--font-size-mini);
+    color: var(--color-dimgray-100);
+    margin: var(--gap-xs) 0;
+}
+
+.forgot-password a {
+    color: #058cd7;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-xs);
+    font-size: var(--font-size-mini);
+    color: var(--color-dimgray-100);
+    margin-top: var(--gap-xs);
+}
+
+.signup-link a {
+    color: #058cd7;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    font-family: 카페24 써라운드;
+}
+
+.footer {
+    display:block;
+    text-align: center;
+    background-color: #00995e;
+    color: white;
+    margin-top: 20px;
+    width: 100%;
+}

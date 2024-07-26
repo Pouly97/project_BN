@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="/H_Project/project1/public/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ONE+Mobile+OTF:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap">
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <img class="logo" src="/icon/BN W.png" alt="Logo">
+        <nav class="nav">
+            <a href="#" class="nav-item">MAIN</a>
+            <a href="#" class="nav-item">HOME</a>
+            <a href="#" class="nav-item">MY</a>
+            <a href="#" class="nav-item">LOGIN</a>
+        </nav>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="mapApi">
+        <!-- 지도 표시 공간 -->
+        <div id="map"></div>
+        <!-- 필터 오버레이 -->
+        <div id="whiteBox">
+            <div class="filter-container">
+                <div class="filter-options">
+                    <!-- 인원수 입력 -->
+                    <input type="number" id="people" name="people" placeholder="인원수 입력" min="1">
+                    <!-- 가격 입력 -->
+                    <select id="money" name="money">
+                        <option value="" disabled selected>예산</option>
+                        <option value="man1">1만원 이하</option>
+                        <option value="man2">2만원 이하</option>
+                        <option value="man3">3만원 이하</option>
+                        <option value="man5">5만원 이하</option>
+                        <option value="man10">10만원 이하</option>
+                        <option value="mNot">가격 상관 없음</option>
+                    </select>
+                    <!-- 음식 분류 선택 -->
+                    <select id="food" name="food">
+                        <option value="" disabled selected>음식 분류 선택</option>
+                        <option value="korean">한식</option>
+                        <option value="chinese">중식</option>
+                        <option value="japanese">일식</option>
+                        <option value="western">양식</option>
+                    </select>
+                    <!-- 제출 버튼 -->
+                    <button id="search-btn" type="submit">검색</button>
+                </div>
+            </div>
+            <!-- 필터 화살표 -->
+            <div class="topArrow">&#9660;</div>
+        </div>
+        <!-- 검색 결과 박스 -->
+        <div class="search-results" id="search-results">
+            <!-- 왼쪽 화살표 -->
+            <div class="arrow arrow-left" id="arrow-left">&#9664;</div>
+            <button id="back-btn">뒤로</button>
+            <!-- 검색 결과 컨테이너 -->
+            <div class="search-results-container" id="search-results-container">
+                <!-- 검색 결과 아이템을 담는 컨테이너 -->
+                <div class="search-result-items" id="search-result-items">
+                    <!-- 검색 결과 아이템이 JavaScript를 통해 동적으로 추가될 예정 -->
+                </div>
+            </div>
+            <!-- 오른쪽 화살표 -->
+            <div class="arrow arrow-right" id="arrow-right">&#9654;</div>
+            <!-- 뒤로 버튼 -->
+        </div>
+        <!-- 상세 보기 박스 -->
+        <div class="detail-view" id="detail-view">
+            <button id="detail-back-btn">뒤로</button>
+            <div class="detail-view-content">
+                <div class="detail-view-left" id="detail-view-left"></div>
+                <div class="detail-view-right" id="detail-view-right"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 카카오 지도 API 스크립트 -->
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1b6faff923157823405998eae959e57"></script>
+    <script>
+        // 지도 초기화
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(35.145539781099, 126.9226640409), // 중심좌표
+                level: 4 // 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 필터 화살표 클릭 시 오버레이 토글
+        document.querySelector('.topArrow').addEventListener('click', function () {
+            var mapApi = document.querySelector('.mapApi');
+            mapApi.classList.toggle('showOverlay');
+        });
+
+        // 검색 버튼 클릭 시 기존 화이트 박스를 숨기고 검색 결과 박스를 표시
+        document.getElementById('search-btn').addEventListener('click', function () {
+            // 화이트 오버레이 숨김
+            document.getElementById('whiteBox').style.display = 'none';
+            // 검색 결과 표시
+            document.getElementById('search-results').classList.add('show');
+
+            // 검색 결과 예시 데이터
+            var searchResults = [
+                { imgSrc: 'https://via.placeholder.com/150', name: '가게명 1' },
+                { imgSrc: 'https://via.placeholder.com/150', name: '가게명 2' },
+                { imgSrc: 'https://via.placeholder.com/150', name: '가게명 3' },
+                { imgSrc: 'https://via.placeholder.com/150', name: '가게명 4' },
+                { imgSrc: 'https://via.placeholder.com/150', name: '가게명 5' },
+                { imgSrc: 'https://via.placeholder.com/150', name: '가게명 6' },
+            ];
+
+            // 검색 결과 컨테이너 가져오기
+            var searchResultsContainer = document.getElementById('search-result-items');
+            searchResultsContainer.innerHTML = '';
+
+            // 검색 결과 아이템 동적으로 추가
+            searchResults.forEach(function (result) {
+                // 아이템 컨테이너 생성
+                var resultItem = document.createElement('div');
+                resultItem.classList.add('search-result-item');
+
+                // 이미지 요소 생성 및 추가
+                var img = document.createElement('img');
+                img.src = result.imgSrc;
+                resultItem.appendChild(img);
+
+                // 가게명 텍스트 요소 생성 및 추가
+                var name = document.createElement('p');
+                name.textContent = result.name;
+                resultItem.appendChild(name);
+
+                // 아이템을 검색 결과 컨테이너에 추가
+                searchResultsContainer.appendChild(resultItem);
+
+                // 검색 결과 아이템 클릭 이벤트 수정
+                resultItem.addEventListener('click', function () {
+                    // 검색 결과 박스 숨기기
+                    document.getElementById('search-results').classList.remove('show');
+                    // 상세 보기 박스 표시
+                    document.getElementById('detail-view').classList.add('show');
+                    // 상세 보기 내용 설정
+                    var detailViewLeft = document.getElementById('detail-view-left');
+                    var detailViewRight = document.getElementById('detail-view-right');
+                    detailViewLeft.innerHTML = '<h2>' + result.name + '</h2><img src="' + result.imgSrc + '" alt="' + result.name + '">';
+                    detailViewRight.innerHTML = '<p>여기에 상세 정보가 표시됩니다.</p>';
+                    // 뒤로 버튼에 이벤트 리스너 추가
+                    document.getElementById('detail-back-btn').addEventListener('click', function () {
+                        document.getElementById('detail-view').classList.remove('show');
+                        document.getElementById('search-results').classList.add('show');
+                    });
+                });
+            });
+        });
+
+        // 뒤로가기 버튼 클릭 시 검색 결과 박스를 숨기고 기존 화이트 박스를 표시
+        document.getElementById('back-btn').addEventListener('click', function () {
+            document.getElementById('search-results').classList.remove('show');
+            document.getElementById('whiteBox').style.display = 'flex';
+        });
+
+        // 슬라이드 기능
+        var slideIndex = 0;
+
+        // 왼쪽 화살표 클릭 시 슬라이드 이동
+        document.getElementById('arrow-left').addEventListener('click', function () {
+            var searchResultItems = document.getElementById('search-result-items');
+            if (slideIndex > 0) {
+                slideIndex--;
+                searchResultItems.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+            }
+        });
+
+        // 오른쪽 화살표 클릭 시 슬라이드 이동
+        document.getElementById('arrow-right').addEventListener('click', function () {
+            var searchResultItems = document.getElementById('search-result-items');
+            if (slideIndex < (searchResultItems.children.length / 3 - 1)) {
+                slideIndex++;
+                searchResultItems.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+            }
+        });
+    </script>
+</body>
+
+</html>

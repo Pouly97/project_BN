@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <link rel="stylesheet" href="/login.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ONE+Mobile+OTF:wght@400;700&display=swap" />
+    <title>로그인</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img class="logo" alt="로고" src="/icon/BNlogo.png">
+        </header>
+        
+        <!-- 네비게이션 바 -->
+        <nav class="nav" aria-label="Main Navigation">
+            <a href="#" class="nav-item" onclick="handleHomeButtonClick()">HOME</a>
+            <a href="#" class="nav-item" onclick="handleMyButtonClick()">MY</a>
+            <a href="#" class="nav-item" onclick="handleLoginButtonClick()">LOGIN</a>
+            <img src="/icon/화면분할가랜더.png" alt="Login Image" class="nav-image">
+        </nav>
+        
+        <!-- 유저 정보 영역 -->
+        <div class="user-info" id="userInfo">
+            <img class="profileUser" src="/icon/유저사진핑크.png" alt="프로필 사진" id="profilePic">
+            <div class="user-details">
+                <span id="userId">비회원 님</span>
+                <span id="userEmail"></span>
+            </div>
+        </div>
+        
+        <main class="main">
+            <div class="image-container">
+                <img src="/icon/너굴맨2blue.png" alt="프로필 사진" class="top-image">
+            </div>
+            <form class="login-form" action="/login" method="post">
+                <div class="form-group">
+                    <label for="email">이메일 주소</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="forgot-password">
+                    <a href="/reset-password">아이디 찾기 / 비밀번호 재설정</a>
+                </div>
+                <button type="submit" class="login-button">로그인</button>
+                <div class="signup-link">
+                    <span>아직 계정이 없으신가요?</span>
+                    <a href="/register">회원가입하기</a>
+                </div>
+            </form>
+        </main>
+    </div>
+    <script>
+        function handleHomeButtonClick() {
+            alert("HOME 버튼 클릭됨");
+        }
+
+        function handleMyButtonClick() {
+            alert("MY 버튼 클릭됨");
+        }
+
+        function handleLoginButtonClick() {
+            alert("LOGIN 버튼 클릭됨");
+        }
+
+        // 로그인 여부를 확인하여 user-info 표시 내용을 결정
+        function checkLoginStatus() {
+            // 실제 로그인 구현에서는 서버에서 로그인 여부를 확인하는 API를 호출하거나,
+            // 로컬 스토리지/쿠키 등을 검사하여 로그인 상태를 확인합니다.
+            var isLoggedIn = false; // 이 값은 실제 로그인 상태에 따라 변경되어야 합니다.
+
+            if (isLoggedIn) {
+                displayUserInfo("user@example.com", "닉네임");
+            } else {
+                displayGuestInfo();
+            }
+        }
+
+        // 로그인한 유저 정보 표시
+        function displayUserInfo(userId, userNickname) {
+            document.getElementById('userId').innerText = userNickname + " 님";
+            document.getElementById('userEmail').innerText = userId;
+            document.getElementById('profilePic').src = "/icon/유저사진핑크.png"; // 프로필 사진 경로
+        }
+
+        // 비회원 정보 표시
+        function displayGuestInfo() {
+            document.getElementById('userId').innerText = "비회원 님";
+            document.getElementById('userEmail').innerText = "이메일@mail.com";
+            document.getElementById('profilePic').src = "/icon/유저사진핑크.png"; // 비회원 기본 사진 경로
+        }
+
+        // 페이지 로드 시 로그인 상태 확인
+        window.onload = checkLoginStatus;
+    </script>
+
+    <footer class="footer">
+        <p>@ 2024 Black Nuguri</p>
+    </footer>
+</body>
+</html>
